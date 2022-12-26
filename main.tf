@@ -12,6 +12,10 @@ provider "aws" {
     region = var.AWS_REGION
 }
 
+# data "aws_availability_zones" "available" {
+#     state= "available"
+# }
+
 resource "aws_instance" "fp_bastion" {
     ami = var.IMAGE
     instance_type = "t2.micro"
@@ -48,7 +52,7 @@ resource "aws_security_group" "fp_bastion_sg" {
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_blocks = ["86.149.44.13/32"]
+        cidr_blocks = [var.MY_IP]
     }
 
     egress {
@@ -63,19 +67,21 @@ resource "aws_security_group" "fp_bastion_sg" {
     }
 }
 
+resource "aws_db_parameter_group" "rds_pg" {
+  name   = "fp-parameter-group"
+  family = "postgres14"
 
-# resource "aws_db_instance" "fp_db" {
-#   identifier             = "final project"
-#   instance_class         = "db.t3.micro"
-#   allocated_storage      = 5
-#   engine                 = "postgres"
-#   engine_version         = "14.1"
-#   username               = "fp"
-#   password               = var.db_password
-#   db_subnet_group_name   = aws_db_subnet_group.education.name
-#   vpc_security_group_ids = [aws_security_group.rds.id]
-#   parameter_group_name   = aws_db_parameter_group.education.name
-#   publicly_accessible    = true
-#   skip_final_snapshot    = true
-# }
+  parameter {
+    name  = "log_connections"
+    value = "1"
+  }
+}
+
+resource "aws_db_subnet_group" "fp_rds_subnet_group" {
+  name        = "fp-rds-subnet-group"
+  description = "Final project RDS subnet group"
+  subnet_ids  = [aws_subnet.fp_private_subnet_1.id, aws_subnet.fp_private_subnet_2.id]
+}
+
+
 
