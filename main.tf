@@ -23,7 +23,7 @@ resource "aws_instance" "fp_bastion" {
     vpc_security_group_ids = [aws_security_group.fp_bastion_sg.id]
     subnet_id = aws_subnet.fp_public_subnet.id
     associate_public_ip_address = true
-
+    user_data = "${file("psql_install.sh")}"
     tags = {
         Name ="fp_bastion"
     }
