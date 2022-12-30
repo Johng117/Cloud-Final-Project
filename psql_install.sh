@@ -1,5 +1,4 @@
 #! /bin/bash
 
 sudo apt-get -y update 
-sudo apt install postgresql-14
-sudo apt install postgresql-contrib
+sudo apt install -y postgresql-14 postgresql-contrib 
