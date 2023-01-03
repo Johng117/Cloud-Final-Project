@@ -1,0 +1,1 @@
+# output variables for ec2 module

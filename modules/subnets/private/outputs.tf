@@ -1,0 +1,1 @@
+# output variables for subnets module
