@@ -9,7 +9,7 @@ resource "aws_security_group" "fp_api_sg" {
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_blocks = [var.MY_IP]
+        cidr_blocks = [var.my-ip]
     }
 
     ingress {
@@ -19,13 +19,13 @@ resource "aws_security_group" "fp_api_sg" {
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
-    ingress {
-        description = "fp-app-sg"
-        from_port = 0
-        to_port = 65535
-        protocol = "tcp"
-        security_groups = [aws_security_group.fp_app_sg.id]
-    }
+    # ingress {
+    #     description = "fp-app-sg"
+    #     from_port = 0
+    #     to_port = 65535
+    #     protocol = "tcp"
+    #     security_groups = [aws_security_group.fp_app_sg.id]
+    # }
     egress {
         from_port = 0
         to_port = 0

@@ -8,9 +8,10 @@ resource "aws_db_instance" "fp_db" {
   engine                 = "postgres"
   engine_version         = "14.1"
   username               = "fp"
-  password               = var.RDS_PASSWORD
+  password               = var.rds-password
   db_subnet_group_name   = aws_db_subnet_group.fp_rds_subnet_group.name
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  vpc_security_group_ids = [var.rds-sg]
+  #[aws_security_group.rds_sg.id]
   parameter_group_name   = aws_db_parameter_group.rds_pg.name
   skip_final_snapshot    = true
 }
@@ -29,5 +30,6 @@ resource "aws_db_parameter_group" "rds_pg" {
 resource "aws_db_subnet_group" "fp_rds_subnet_group" {
   name        = "fp-rds-subnet-group"
   description = "Final project RDS subnet group"
-  subnet_ids  = [aws_subnet.fp_private_subnet_1.id, aws_subnet.fp_private_subnet_2.id]
+  subnet_ids  = [ var.private-1, var.private-2 ]
+  #[aws_subnet.fp_private_subnet_1.id, aws_subnet.fp_private_subnet_2.id]
 }

@@ -2,7 +2,7 @@
 resource "aws_subnet" "fp_public_subnet" {
  
   vpc_id     = var.vpc-id
-  cidr_block = var.PUB_SUB_CIDR
+  cidr_block = var.cidr-pub-1
   availability_zone = "us-east-1a"
   map_public_ip_on_launch = true
   

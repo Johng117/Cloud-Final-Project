@@ -1,6 +1,6 @@
 # ec2 instance for bastion host
 resource "aws_instance" "fp_bastion" {
-    ami = var.IMAGE
+    ami = var.image
     instance_type = "t2.micro"
     key_name = var.BASTION_KP
     vpc_security_group_ids = [ var.sg-id ]
