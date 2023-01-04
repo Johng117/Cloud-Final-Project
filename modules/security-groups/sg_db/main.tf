@@ -3,7 +3,7 @@
 resource "aws_security_group" "rds_sg" {
     name = "rds_sg"
     description = "security group for rds instance"
-    vpc_id = aws_vpc.fp_vpc.id
+    vpc_id = var.vpc-id
     ingress {
         description = "postgres_port"
         from_port = 5432
@@ -17,7 +17,8 @@ resource "aws_security_group" "rds_sg" {
         from_port = 5432
         to_port = 5432
         protocol = "tcp"
-        security_groups = [aws_security_group.fp_bastion_sg.id]
+        security_groups = var.bastion
+        
     }
     
     ingress {
@@ -25,7 +26,8 @@ resource "aws_security_group" "rds_sg" {
         from_port = 5432
         to_port = 5432
         protocol = "tcp"
-        security_groups = [aws_security_group.fp_api_sg.id]
+        security_groups = var.api
+    
     }
 
     

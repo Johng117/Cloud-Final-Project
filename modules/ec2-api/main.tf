@@ -7,7 +7,7 @@ resource "aws_instance" "fp_api" {
     vpc_security_group_ids = [aws_security_group.fp_api_sg.id]
     subnet_id = aws_subnet.fp_public_subnet_2.id
     associate_public_ip_address = true
-    user_data = "${file("fp_api.sh")}"
+    user_data = var.user-data
     tags = {
         Name ="fp_api"
     }

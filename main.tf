@@ -12,153 +12,58 @@ provider "aws" {
     region = var.AWS_REGION
 }
 
-# ec2 instance for bastion host
-resource "aws_instance" "fp_bastion" {
-    ami = var.IMAGE
-    instance_type = "t2.micro"
-    key_name = var.KEY_PAIR
-    vpc_security_group_ids = [aws_security_group.fp_bastion_sg.id]
-    subnet_id = aws_subnet.fp_public_subnet.id
-    associate_public_ip_address = true
-    user_data = "${file("psql_install.sh")}"
-    tags = {
-        Name ="fp_bastion"
-    }
+# ec2 instances
+
+# module calls for bastion host, ec2-pi and ec2-app instances
+module ec2-bastion {
+    source = "./modules/ec2-bastion"
+    user-data = "${file("./data/psql_install.sh")}"
+    subnet-id = module.public_1.public-1-id
+    sg-id = module.sg_bastion.sg-bastion-id
 }
 
-resource "aws_security_group" "fp_bastion_sg" {
-    name = "fp_bastion_sg"
-    description = "security group for bastion host"
-    vpc_id = aws_vpc.fp_vpc.id
-    ingress {
-        description = "HTTP"
-        from_port = 80
-        to_port = 80
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-    ingress {
-        description = "HTTPS"
-        from_port = 443
-        to_port = 443
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-    ingress {
-        description = "SSH"
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        cidr_blocks = [var.MY_IP]
-    }
+module ec2-api {
+    source = "./modules/ec2-api"
+    user-data = "${file("./data/fp_api.sh")}"
+    subnet-id = module.public_2.public-2-id
+    sg-id = module.sg_api.sg-api-id
+}
 
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
+# rds database
 
-    }
-    tags = {
-        Name = "fp_bastion_sg"
-    }
+module db {
+    source = "./modules/db"
+    private-1 = 
+    private-2 =
+    rds-sg = 
+}
+
+# security groups
+
+module sg_bastion {
+    source = "./modules/security-groups/sg_bastion"
+    vpc-id = module.vpc.vpc-id
+}
+
+module sg-api {
+    source = "./modules/security-groups/sg_api"
+    vpc-id = module.vpc.vpc-id
+}
+
+module sg-db {
+    source = "./modules/security-groups/sg_db"
+    vpc-id = module.vpc.vpc-id
+    bastion = module.sg_bastion.sg-bastion-id
+    api = module.sg-api.sg-api-id
 }
 
 
 
 
-# security group for final project api
-resource "aws_security_group" "fp_api_sg" {
-    name = "fp_api_sg"
-    description = "security group for api"
-    vpc_id = aws_vpc.fp_vpc.id
-   
-    ingress {
-        description = "SSH"
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        cidr_blocks = [var.MY_IP]
-    }
 
-    ingress {
-        description = "3001"
-        from_port = 3001
-        to_port = 3001
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-    ingress {
-        description = "fp-app-sg"
-        from_port = 0
-        to_port = 65535
-        protocol = "tcp"
-        security_groups = [aws_security_group.fp_app_sg.id]
-    }
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-
-    }
-    tags = {
-        Name = "fp_api_sg"
-    }
-}
-
-# ec2 instance for app
-
-resource "aws_instance" "fp_app" {
-    ami = var.IMAGE
-    instance_type = "t2.micro"
-    key_name = var.APP_KEY_PAIR
-    vpc_security_group_ids = [aws_security_group.fp_app_sg.id]
-    subnet_id = aws_subnet.fp_public_subnet_2.id
-    associate_public_ip_address = true
-    # user_data = "${file("fp_api.sh")}"
-    tags = {
-        Name ="fp_app"
-    }
-}
-
-# security group for final project api
-resource "aws_security_group" "fp_app_sg" {
-    name = "fp_app_sg"
-    description = "security group for app"
-    vpc_id = aws_vpc.fp_vpc.id
-    ingress {
-        description = "HTTP"
-        from_port = 80
-        to_port = 80
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-    ingress {
-        description = "HTTPS"
-        from_port = 443
-        to_port = 443
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-    ingress {
-        description = "SSH"
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        cidr_blocks = [var.MY_IP]
-    }
-
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-
-    }
-    tags = {
-        Name = "fp_app_sg"
-    }
+module public_1 {
+    source = "./modules/subnets/public_1"
+    vpc-id = module.vpc.vpc-id
 }
 
 
