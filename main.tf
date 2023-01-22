@@ -10,6 +10,8 @@ terraform {
 
 provider "aws" {
     region = var.AWS_REGION
+    access_key  = var.ACCESS_KEY
+    secret_key = var.SECRET_KEY
 }
 
 # availability zone 
@@ -28,12 +30,22 @@ module ec2-bastion {
 
 module ec2-api {
     source = "./modules/ec2-api"
-    user-data = "${file("./data/fp_api.sh")}"
+    user-data = templatefile("./data/fp_api.sh",{ db="${var.DB}", host="${var.HOST}", password="${var.PASSWORD}", user="${var.USER}"} )
     subnet-id = module.public_2.public-2-id
     sg-id = module.sg_api.sg-api-id
     image = var.IMAGE
     key-pair = var.API_KEY_PAIR
 }
+
+module ec2-app {
+    source = "./modules/ec2-app"
+    user-data = templatefile("./data/fp_app.sh", {api-ip="${var.API_IP}"})
+    subnet-id = module.public_3.public-3-id
+    sg-id = module.sg_app.sg-app-id
+    image = var.IMAGE
+    key-pair = var.APP_KEY_PAIR
+}
+
 
 # rds database
 
@@ -42,7 +54,8 @@ module db {
     private-1 = module.private.private-subnet-1-id
     private-2 = module.private.private-subnet-2-id
     rds-sg = module.sg_db.sg-rds-id
-    rds-password = var.RDS_PASSWORD
+    rds-password = var.DB_PASSWORD
+    user = var.DB_USERNAME
 }
 
 # security groups
@@ -55,6 +68,14 @@ module sg_bastion {
 
 module sg_api {
     source = "./modules/security-groups/sg_api"
+    vpc-id = module.vpc.vpc-id
+    my-ip = var.MY_IP
+    app = module.sg_app.sg-app-id
+    app-ip = var.APP-IP
+}
+
+module sg_app {
+    source = "./modules/security-groups/sg_app"
     vpc-id = module.vpc.vpc-id
     my-ip = var.MY_IP
 }
@@ -78,6 +99,12 @@ module public_2 {
     cidr-pub-2 = var.PUB_SUB_2_CIDR
 }
 
+module public_3 {
+    source = "./modules/subnets/public_3"
+    vpc-id = module.vpc.vpc-id
+    cidr-pub-3 = var.PUB_SUB_3_CIDR
+}
+
 module private {
     source = "./modules/subnets/private"
     vpc-id = module.vpc.vpc-id
@@ -94,6 +121,14 @@ module vpc {
     fp-ig-route-cidr = var.FP_IG_ROUTE_CIDR
 }
 
+module s3 {
+    source = "./modules/s3"
+    bucket-name = var.BUCKET_NAME
+    acl-value = var.ACL_VALUE
+    dynamo-name = var.DYN_NAME
+    dynamo-hash = var.DYN_HASH
+    dynamo-hash-type = var.DYN_HASH_TYPE
+}
 
 
 

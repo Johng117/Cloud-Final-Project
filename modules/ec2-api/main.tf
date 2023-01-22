@@ -7,6 +7,7 @@ resource "aws_instance" "fp_api" {
     vpc_security_group_ids = [ var.sg-id ]
     subnet_id = var.subnet-id
     associate_public_ip_address = true
+    user_data_replace_on_change = true
     user_data = var.user-data
     tags = {
         Name ="fp_api"

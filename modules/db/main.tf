@@ -6,8 +6,8 @@ resource "aws_db_instance" "fp_db" {
   instance_class         = "db.t3.micro"
   allocated_storage      = 5
   engine                 = "postgres"
-  engine_version         = "14.1"
-  username               = "fp"
+  engine_version         = "14.3"
+  username               = var.user
   password               = var.rds-password
   db_subnet_group_name   = aws_db_subnet_group.fp_rds_subnet_group.name
   vpc_security_group_ids = [var.rds-sg]

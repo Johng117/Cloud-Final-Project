@@ -13,19 +13,13 @@ resource "aws_security_group" "fp_api_sg" {
     }
 
     ingress {
-        description = "3001"
+        description = "http"
         from_port = 3001
         to_port = 3001
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
-    # ingress {
-    #     description = "fp-app-sg"
-    #     from_port = 0
-    #     to_port = 65535
-    #     protocol = "tcp"
-    #     security_groups = [aws_security_group.fp_app_sg.id]
-    # }
+
     egress {
         from_port = 0
         to_port = 0

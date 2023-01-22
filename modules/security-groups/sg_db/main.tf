@@ -4,13 +4,6 @@ resource "aws_security_group" "rds_sg" {
     name = "rds_sg"
     description = "security group for rds instance"
     vpc_id = var.vpc-id
-    ingress {
-        description = "postgres_port"
-        from_port = 5432
-        to_port = 5432
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
 
     ingress {
         description = "bastion_sg"
@@ -30,7 +23,6 @@ resource "aws_security_group" "rds_sg" {
     
     }
 
-    
     egress {
         from_port = 0
         to_port = 0

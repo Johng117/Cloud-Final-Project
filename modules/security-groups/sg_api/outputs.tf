@@ -3,3 +3,7 @@
 output sg-api-id {
     value = aws_security_group.fp_api_sg.id
 }
+
+# output sg-name {
+#     value = aws_security_group.fp_api_sg
+# }
