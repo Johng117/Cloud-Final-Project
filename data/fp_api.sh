@@ -14,7 +14,10 @@ sudo chmod 777 /home/ubuntu/final-project-api
 cd /home/ubuntu/final-project-api
 sudo npm install
 npm install forever -g
-forever start /home/ubuntu/final-project-api/index.js
+# sudo mkdir /home/ubuntu/forever
+# sudo chmod 777 /home/ubuntu/forever
+# FOREVER_ROOT=/home/ubuntu/forever 
+# forever start /home/ubuntu/final-project-api/index.js
 
 # sudo chmod 400 package-lock.json
 # cd ~

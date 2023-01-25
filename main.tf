@@ -14,7 +14,6 @@ provider "aws" {
     secret_key = var.SECRET_KEY
 }
 
-# availability zone 
 
 
 # ec2 instances
@@ -30,7 +29,7 @@ module ec2-bastion {
 
 module ec2-api {
     source = "./modules/ec2-api"
-    user-data = templatefile("./data/fp_api.sh",{ db="${var.DB}", host="${var.HOST}", password="${var.PASSWORD}", user="${var.USER}"} )
+    user-data = templatefile("./data/fp_api.sh",{ db="${var.DB}", host="${var.HOST}", password="${var.DB_PASSWORD}", user="${var.DB_USERNAME}" } )
     subnet-id = module.public_2.public-2-id
     sg-id = module.sg_api.sg-api-id
     image = var.IMAGE
