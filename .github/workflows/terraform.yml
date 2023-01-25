@@ -47,7 +47,7 @@ name: 'Terraform'
 on:
   push:
     branches: [ "master" ]
-    paths: terraform/**
+    # paths: terraform/**
 
 env:
   TF_LOG: INFO
@@ -78,7 +78,7 @@ env:
   PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
   PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
   VPC_CIDR: ${{ secrets.VPC_CIDR }}
-  
+
 permissions:
   contents: read
 
