@@ -128,6 +128,8 @@ module s3 {
     dynamo-hash = var.DYN_HASH
     dynamo-hash-type = var.DYN_HASH_TYPE
     region = var.AWS_REGION
+    access-key = var.AWS_ACCESS_KEY_ID
+    secret-key = var.AWS_SECRET_ACCESS_KEY
 }
 
 
