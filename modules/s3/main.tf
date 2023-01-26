@@ -2,10 +2,7 @@
 
 resource "aws_s3_bucket" fp_s3_bucket {
     bucket = var.bucket-name
-    access_key = var.access-key
-    secret_key = var.secret-key
     region = var.region
-    profile = "default"
     lifecycle {
         prevent_destroy = true
     }
