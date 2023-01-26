@@ -52,8 +52,8 @@ on:
 env:
   TF_LOG: INFO
   # credentials
-  access_key: ${{ secrets.AWS_ACTION_KEY_ID }}
-  secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   ACL_VALUE: ${{ secrets.ACL }}
   API_IP: ${{ secrets.API_IP_ADDRESS }}
   API_KEY_PAIR: ${{ secrets.API_KEY }}
