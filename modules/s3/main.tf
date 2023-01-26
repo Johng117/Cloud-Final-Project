@@ -2,6 +2,9 @@
 
 resource "aws_s3_bucket" fp_s3_bucket {
     bucket = var.bucket-name
+    access_key = var.access-key
+    secret_key = var.secret-key
+    region = var.region
     lifecycle {
         prevent_destroy = true
     }
@@ -24,9 +27,6 @@ resource "aws_s3_bucket" fp_s3_bucket {
 resource "aws_s3_bucket_acl" fp_s3_bucket_acl {
   bucket = aws_s3_bucket.fp_s3_bucket.id
   acl    = var.acl-value
-  region = var.region
-  access_key = var.access-key
-  secret_key = var.secret-key
 }
 
 
