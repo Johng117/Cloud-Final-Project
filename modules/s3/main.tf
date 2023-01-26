@@ -2,7 +2,6 @@
 
 resource "aws_s3_bucket" fp_s3_bucket {
     bucket = var.bucket-name
-    region = var.region
     lifecycle {
         prevent_destroy = true
     }
