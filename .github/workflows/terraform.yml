@@ -78,6 +78,7 @@ env:
   PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
   PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
   VPC_CIDR: ${{ secrets.VPC_CIDR }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
 
 permissions:
   contents: read
