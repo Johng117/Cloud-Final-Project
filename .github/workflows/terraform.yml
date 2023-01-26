@@ -52,8 +52,8 @@ on:
 env:
   TF_LOG: DEBUG
   # credentials
-  # AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
-  # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   ACL_VALUE: ${{ secrets.ACL }}
   API_IP: ${{ secrets.API_IP_ADDRESS }}
   API_KEY_PAIR: ${{ secrets.API_KEY }}
@@ -78,7 +78,7 @@ env:
   PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
   PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
   VPC_CIDR: ${{ secrets.VPC_CIDR }}
-  # AWS_REGION: ${{ secrets.AWS_REGION }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
 
 permissions:
   contents: read
@@ -110,10 +110,6 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      env:  
-        AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ secrets.AWS_REGION }}
       run: terraform init 
 
     # Checks that all Terraform configuration files adhere to a canonical format
