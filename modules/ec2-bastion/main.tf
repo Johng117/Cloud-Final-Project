@@ -5,7 +5,7 @@ resource "aws_instance" "fp_bastion" {
     key_name = var.BASTION_KP
     vpc_security_group_ids = [ var.sg-id ]
     subnet_id = var.subnet-id
-    associate_public_ip_address = true
+    associate_public_ip_address = false
     user_data = var.user-data
     tags = {
         Name ="fp_bastion"
