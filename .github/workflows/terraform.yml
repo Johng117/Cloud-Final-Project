@@ -11,33 +11,33 @@ env:
   # credentials
   AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  # TF_VAR_ACL_VALUE: ${{ secrets.ACL }}
-  # TF_VAR_API_IP: ${{ secrets.API_IP_ADDRESS }}
-  # TF_VAR_API_KEY_PAIR: ${{ secrets.API_KEY }}
-  # TF_VAR_APP_IP: ${{ secrets.APP_IP }}
-  # TF_VAR_APP_KEY_PAIR: ${{ secrets.APP_KEY }}
-  # TF_VAR_IMAGE: ${{ secrets.AWS_IMAGE }}
-  # TF_VAR_INSTANCE: ${{ secrets.AWS_INSTANCE }}
-  # TF_VAR_KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
-  # TF_VAR_BUCKET_NAME: ${{ secrets.BUCKET }}
-  # TF_VAR_DB: ${{ secrets.DB }}
-  # TF_VAR_HOST: ${{ secrets.DB_HOST }}
-  # TF_VAR_DB_PASSWORD: ${{ secrets.DB_PASS }}
-  # TF_VAR_DB_USERNAME: ${{ secrets.DB_USER }}
-  # TF_VAR_DYN_HASH: ${{ secrets.DYNAMO_HASH }}
-  # TF_VAR_DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
-  # TF_VAR_DYN_NAME: ${{ secrets.DYNAMO_NAME }}
-  # TF_VAR_FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
-  # TF_VAR_MY_IP: ${{ secrets.MY_IP }}
-  # TF_VAR_PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
-  # TF_VAR_PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
-  # TF_VAR_PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
-  # TF_VAR_PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
-  # TF_VAR_PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
-  # TF_VAR_VPC_CIDR: ${{ secrets.VPC_CIDR }}
-  # TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
-  # TF_VAR_PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
-  # TF_VAR_PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
+  TF_VAR_ACL_VALUE: ${{ secrets.ACL }}
+  TF_VAR_API_IP: ${{ secrets.API_IP_ADDRESS }}
+  TF_VAR_API_KEY_PAIR: ${{ secrets.API_KEY }}
+  TF_VAR_APP_IP: ${{ secrets.APP_IP }}
+  TF_VAR_APP_KEY_PAIR: ${{ secrets.APP_KEY }}
+  TF_VAR_IMAGE: ${{ secrets.AWS_IMAGE }}
+  TF_VAR_INSTANCE: ${{ secrets.AWS_INSTANCE }}
+  TF_VAR_KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
+  TF_VAR_BUCKET_NAME: ${{ secrets.BUCKET }}
+  TF_VAR_DB: ${{ secrets.DB }}
+  TF_VAR_HOST: ${{ secrets.DB_HOST }}
+  TF_VAR_DB_PASSWORD: ${{ secrets.DB_PASS }}
+  TF_VAR_DB_USERNAME: ${{ secrets.DB_USER }}
+  TF_VAR_DYN_HASH: ${{ secrets.DYNAMO_HASH }}
+  TF_VAR_DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
+  TF_VAR_DYN_NAME: ${{ secrets.DYNAMO_NAME }}
+  TF_VAR_FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
+  TF_VAR_MY_IP: ${{ secrets.MY_IP }}
+  TF_VAR_PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
+  TF_VAR_PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
+  TF_VAR_PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
+  TF_VAR_PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
+  TF_VAR_PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
+  TF_VAR_VPC_CIDR: ${{ secrets.VPC_CIDR }}
+  TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
+  TF_VAR_PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
+  TF_VAR_PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
 
 permissions:
   contents: read
