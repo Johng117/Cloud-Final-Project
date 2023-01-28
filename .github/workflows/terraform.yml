@@ -6,7 +6,7 @@ on:
     branches: [ "master" ]
     # paths: terraform/**
 
-env:
+variables:
   TF_LOG: TRACE
   # credentials
   AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
