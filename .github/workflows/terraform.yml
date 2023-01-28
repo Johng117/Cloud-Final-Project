@@ -51,33 +51,33 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       env:
-       AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  ACL_VALUE: ${{ secrets.ACL }}
-  API_IP: ${{ secrets.API_IP_ADDRESS }}
-  API_KEY_PAIR: ${{ secrets.API_KEY }}
-  APP_IP: ${{ secrets.APP_IP }}
-  APP_KEY_PAIR: ${{ secrets.APP_KEY }}
-  IMAGE: ${{ secrets.AWS_IMAGE }}
-  INSTANCE: ${{ secrets.AWS_INSTANCE }}
-  KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
-  BUCKET_NAME: ${{ secrets.BUCKET }}
-  DB: ${{ secrets.DB }}
-  HOST: ${{ secrets.DB_HOST }}
-  DB_PASSWORD: ${{ secrets.DB_PASS }}
-  DB_USERNAME: ${{ secrets.DB_USER }}
-  DYN_HASH: ${{ secrets.DYNAMO_HASH }}
-  DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
-  DYN_NAME: ${{ secrets.DYNAMO_NAME }}
-  FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
-  MY_IP: ${{ secrets.MY_IP }}
-  PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
-  PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
-  PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
-  PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
-  PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
-  VPC_CIDR: ${{ secrets.VPC_CIDR }}
-  AWS_REGION: ${{ secrets.AWS_REGION }}
+        AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        ACL_VALUE: ${{ secrets.ACL }}
+        API_IP: ${{ secrets.API_IP_ADDRESS }}
+        API_KEY_PAIR: ${{ secrets.API_KEY }}
+        APP_IP: ${{ secrets.APP_IP }}
+        APP_KEY_PAIR: ${{ secrets.APP_KEY }}
+        IMAGE: ${{ secrets.AWS_IMAGE }}
+        INSTANCE: ${{ secrets.AWS_INSTANCE }}
+        KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
+        BUCKET_NAME: ${{ secrets.BUCKET }}
+        DB: ${{ secrets.DB }}
+        HOST: ${{ secrets.DB_HOST }}
+        DB_PASSWORD: ${{ secrets.DB_PASS }}
+        DB_USERNAME: ${{ secrets.DB_USER }}
+        DYN_HASH: ${{ secrets.DYNAMO_HASH }}
+        DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
+        DYN_NAME: ${{ secrets.DYNAMO_NAME }}
+        FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
+        MY_IP: ${{ secrets.MY_IP }}
+        PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
+        PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
+        PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
+        PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
+        PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
+        VPC_CIDR: ${{ secrets.VPC_CIDR }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
       run: terraform plan
 
       # On push to "master", build or change infrastructure according to Terraform configuration files
