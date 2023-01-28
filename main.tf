@@ -50,8 +50,8 @@ module "ec2-app" {
 
 module "db" {
   source       = "./modules/db"
-  private-1    = module.private.private-subnet-1-id
-  private-2    = module.private.private-subnet-2-id
+  private-1    = var.PRI_SUB_1_ID
+  private-2    = var.PRI_SUB_2_ID
   rds-sg       = module.sg_db.sg-rds-id
   rds-password = var.DB_PASSWORD
   user         = var.DB_USERNAME

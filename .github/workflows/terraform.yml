@@ -36,6 +36,8 @@ env:
   TF_VAR_PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
   TF_VAR_VPC_CIDR: ${{ secrets.VPC_CIDR }}
   TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
+  TF_VAR_PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
+  TF_VAR_PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
 
 permissions:
   contents: read
