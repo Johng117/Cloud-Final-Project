@@ -11,31 +11,31 @@ env:
   # credentials
   AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  ACL_VALUE: ${{ secrets.ACL }}
-  API_IP: ${{ secrets.API_IP_ADDRESS }}
-  API_KEY_PAIR: ${{ secrets.API_KEY }}
-  APP_IP: ${{ secrets.APP_IP }}
-  APP_KEY_PAIR: ${{ secrets.APP_KEY }}
-  IMAGE: ${{ secrets.AWS_IMAGE }}
-  INSTANCE: ${{ secrets.AWS_INSTANCE }}
-  KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
-  BUCKET_NAME: ${{ secrets.BUCKET }}
-  DB: ${{ secrets.DB }}
-  HOST: ${{ secrets.DB_HOST }}
-  DB_PASSWORD: ${{ secrets.DB_PASS }}
-  DB_USERNAME: ${{ secrets.DB_USER }}
-  DYN_HASH: ${{ secrets.DYNAMO_HASH }}
-  DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
-  DYN_NAME: ${{ secrets.DYNAMO_NAME }}
-  FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
-  MY_IP: ${{ secrets.MY_IP }}
-  PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
-  PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
-  PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
-  PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
-  PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
-  VPC_CIDR: ${{ secrets.VPC_CIDR }}
-  AWS_REGION: ${{ secrets.AWS_REGION }}
+  TF_VAR_ACL_VALUE: ${{ secrets.ACL }}
+  TF_VAR_API_IP: ${{ secrets.API_IP_ADDRESS }}
+  TF_VAR_API_KEY_PAIR: ${{ secrets.API_KEY }}
+  TF_VAR_APP_IP: ${{ secrets.APP_IP }}
+  TF_VAR_APP_KEY_PAIR: ${{ secrets.APP_KEY }}
+  TF_VAR_IMAGE: ${{ secrets.AWS_IMAGE }}
+  TF_VAR_INSTANCE: ${{ secrets.AWS_INSTANCE }}
+  TF_VAR_KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
+  TF_VAR_BUCKET_NAME: ${{ secrets.BUCKET }}
+  TF_VAR_DB: ${{ secrets.DB }}
+  TF_VAR_HOST: ${{ secrets.DB_HOST }}
+  TF_VAR_DB_PASSWORD: ${{ secrets.DB_PASS }}
+  TF_VAR_DB_USERNAME: ${{ secrets.DB_USER }}
+  TF_VAR_DYN_HASH: ${{ secrets.DYNAMO_HASH }}
+  TF_VAR_DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
+  TF_VAR_DYN_NAME: ${{ secrets.DYNAMO_NAME }}
+  TF_VAR_FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
+  TF_VAR_MY_IP: ${{ secrets.MY_IP }}
+  TF_VAR_PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
+  TF_VAR_PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
+  TF_VAR_PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
+  TF_VAR_PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
+  TF_VAR_PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
+  TF_VAR_VPC_CIDR: ${{ secrets.VPC_CIDR }}
+  TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
 
 permissions:
   contents: read
