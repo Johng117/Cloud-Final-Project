@@ -55,7 +55,7 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       with:
-        variables: | 
+        variables:  
           TF_VAR_ACL_VALUE: ${{ secrets.ACL }}
           TF_VAR_API_IP: ${{ secrets.API_IP_ADDRESS }}
           TF_VAR_API_KEY_PAIR: ${{ secrets.API_KEY }}
