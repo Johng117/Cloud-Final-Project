@@ -17,7 +17,6 @@ resource "aws_db_instance" "fp_db" {
   password               = var.rds-password
   db_subnet_group_name   = aws_db_subnet_group.fp_rds_subnet_group.name
   vpc_security_group_ids = [var.rds-sg]
-  #[aws_security_group.rds_sg.id]
   parameter_group_name   = aws_db_parameter_group.rds_pg.name
   skip_final_snapshot    = true
 }
