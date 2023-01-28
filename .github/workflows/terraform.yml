@@ -46,12 +46,14 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: production
+    env:
+     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
+    # defaults:
+    #   run:
+    #     shell: bash
 
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -61,47 +63,19 @@ jobs:
     - name: Verify Terraform version
       run: terraform --version
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     aws-region: us-east-1
 
     - name: show variable
       run:
         echo ${{ secrets.DB_PASS }}
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      env: 
-        AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        TF_VAR_ACL_VALUE: ${{ secrets.ACL }}
-        TF_VAR_API_IP: ${{ secrets.API_IP_ADDRESS }}
-        TF_VAR_API_KEY_PAIR: ${{ secrets.API_KEY }}
-        TF_VAR_APP_IP: ${{ secrets.APP_IP }}
-        TF_VAR_APP_KEY_PAIR: ${{ secrets.APP_KEY }}
-        TF_VAR_IMAGE: ${{ secrets.AWS_IMAGE }}
-        TF_VAR_INSTANCE: ${{ secrets.AWS_INSTANCE }}
-        TF_VAR_KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
-        TF_VAR_BUCKET_NAME: ${{ secrets.BUCKET }}
-        TF_VAR_DB: ${{ secrets.DB }}
-        TF_VAR_HOST: ${{ secrets.DB_HOST }}
-        TF_VAR_DB_PASSWORD: ${{ secrets.DB_PASS }}
-        TF_VAR_DB_USERNAME: ${{ secrets.DB_USER }}
-        TF_VAR_DYN_HASH: ${{ secrets.DYNAMO_HASH }}
-        TF_VAR_DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
-        TF_VAR_DYN_NAME: ${{ secrets.DYNAMO_NAME }}
-        TF_VAR_FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
-        TF_VAR_MY_IP: ${{ secrets.MY_IP }}
-        TF_VAR_PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
-        TF_VAR_PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
-        TF_VAR_PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
-        TF_VAR_PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
-        TF_VAR_PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
-        TF_VAR_VPC_CIDR: ${{ secrets.VPC_CIDR }}
-        TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
-      run: terraform init 
+      run: terraform init -var 
 
     - name: Terraform Validate
       run: terraform validate 
