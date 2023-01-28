@@ -1,6 +1,12 @@
 
-#create rds instance inside private subnet
+# subnet group for rds database instance
+resource "aws_db_subnet_group" "fp_rds_subnet_group" {
+  name        = "fp-rds-subnet-group"
+  description = "Final project RDS subnet group"
+  subnet_ids  = [ var.private-1, var.private-2 ]
+}
 
+#create rds instance inside private subnet
 resource "aws_db_instance" "fp_db" {
   identifier             = "final-project"
   instance_class         = "db.t3.micro"
@@ -25,11 +31,4 @@ resource "aws_db_parameter_group" "rds_pg" {
     name  = "log_connections"
     value = "1"
   }
-}
-# subnet group for rds database instance
-resource "aws_db_subnet_group" "fp_rds_subnet_group" {
-  name        = "fp-rds-subnet-group"
-  description = "Final project RDS subnet group"
-  subnet_ids  = [ var.private-1, var.private-2 ]
-  #[aws_subnet.fp_private_subnet_1.id, aws_subnet.fp_private_subnet_2.id]
 }
