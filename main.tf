@@ -21,9 +21,9 @@ provider "aws" {
 # module calls for bastion host, ec2-pi and ec2-app instances
 module "ec2-bastion" {
   source    = "./modules/ec2-bastion"
-  user-data = file("./data/psql_install.sh")
-  subnet-id = module.public_1.public-1-id
-  sg-id     = module.sg_bastion.sg-bastion-id
+  bastion-user-data = file("./data/psql_install.sh")
+  bastion-subnet-id = module.public_1.public-1-id
+  bastion-sg-id     = module.sg_bastion.sg-bastion-id
   image     = var.IMAGE
   bastion-key-pair = var.BASTION_KEY_PAIR
 }
