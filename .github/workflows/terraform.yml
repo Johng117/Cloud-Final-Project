@@ -12,14 +12,33 @@ env:
   AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
-  TF_VAR_vpc-id: ${{ secrets.VPC_ID }}
-  TF_VAR_image: ${{ secrets.AWS_IMAGE }}
-  TF_VAR_api-key-pair: ${{ secrets.API_KEY }}
-  TF_VAR_app-key-pair: ${{ secrets.APP_KEY }}
-  TF_VAR_bastion-key-pair: ${{ secrets.BAST_KEY_PAIR }}
-  TF_VAR_bastion-user-data: ${{ secrets.BASTION_DATA }}
-  TF_VAR_my-ip: ${{ secrets.MY_IP }}
-
+ 
+  ACL_VALUE: ${{ secrets.ACL }}
+  API_IP: ${{ secrets.API_IP_ADDRESS }}
+  API_KEY_PAIR: ${{ secrets.API_KEY }}
+  APP_IP: ${{ secrets.APP_IP }}
+  APP_KEY_PAIR: ${{ secrets.APP_KEY }}
+  IMAGE: ${{ secrets.AWS_IMAGE }}
+  INSTANCE: ${{ secrets.AWS_INSTANCE }}
+  KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
+  BUCKET_NAME: ${{ secrets.BUCKET }}
+  DB: ${{ secrets.DB }}
+  HOST: ${{ secrets.DB_HOST }}
+  DB_PASSWORD: ${{ secrets.DB_PASS }}
+  DB_USERNAME: ${{ secrets.DB_USER }}
+  DYN_HASH: ${{ secrets.DYNAMO_HASH }}
+  DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
+  DYN_NAME: ${{ secrets.DYNAMO_NAME }}
+  FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
+  MY_IP: ${{ secrets.MY_IP }}
+  PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
+  PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
+  PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
+  PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
+  PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
+  VPC_CIDR: ${{ secrets.VPC_CIDR }}
+  PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
+  PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
 
 permissions:
   contents: read
@@ -68,33 +87,7 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
-      env:
-        ACL_VALUE: ${{ secrets.ACL }}
-        API_IP: ${{ secrets.API_IP_ADDRESS }}
-        API_KEY_PAIR: ${{ secrets.API_KEY }}
-        APP_IP: ${{ secrets.APP_IP }}
-        APP_KEY_PAIR: ${{ secrets.APP_KEY }}
-        IMAGE: ${{ secrets.AWS_IMAGE }}
-        INSTANCE: ${{ secrets.AWS_INSTANCE }}
-        KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
-        BUCKET_NAME: ${{ secrets.BUCKET }}
-        DB: ${{ secrets.DB }}
-        HOST: ${{ secrets.DB_HOST }}
-        DB_PASSWORD: ${{ secrets.DB_PASS }}
-        DB_USERNAME: ${{ secrets.DB_USER }}
-        DYN_HASH: ${{ secrets.DYNAMO_HASH }}
-        DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
-        DYN_NAME: ${{ secrets.DYNAMO_NAME }}
-        FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
-        MY_IP: ${{ secrets.MY_IP }}
-        PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
-        PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
-        PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
-        PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
-        PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
-        VPC_CIDR: ${{ secrets.VPC_CIDR }}
-        PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
-        PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
+        
       
 
     # Checks that all Terraform configuration files adhere to a canonical format
@@ -108,7 +101,14 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan 
-        
+      env:
+        TF_VAR_vpc-id: ${{ secrets.VPC_ID }}
+        TF_VAR_image: ${{ secrets.AWS_IMAGE }}
+        TF_VAR_api-key-pair: ${{ secrets.API_KEY }}
+        TF_VAR_app-key-pair: ${{ secrets.APP_KEY }}
+        TF_VAR_bastion-key-pair: ${{ secrets.BAST_KEY_PAIR }}
+        TF_VAR_bastion-user-data: ${{ secrets.BASTION_DATA }}
+        TF_VAR_my-ip: ${{ secrets.MY_IP }}
       
       # On push to "master", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
