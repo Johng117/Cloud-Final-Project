@@ -67,7 +67,7 @@ module "sg_bastion" {
 
 module "sg_api" {
   source = "./modules/security-groups/sg_api"
-  vpc-id = module.vpc.vpc-id
+  vpc-id = var.VPC_ID
   my-ip  = var.MY_IP
   app    = module.sg_app.sg-app-id
   app-ip = var.APP-IP
@@ -75,38 +75,38 @@ module "sg_api" {
 
 module "sg_app" {
   source = "./modules/security-groups/sg_app"
-  vpc-id = module.vpc.vpc-id
+  vpc-id = var.VPC_ID
   my-ip  = var.MY_IP
 }
 
 module "sg_db" {
   source  = "./modules/security-groups/sg_db"
-  vpc-id  = module.vpc.vpc-id
+  vpc-id  = var.VPC_ID
   bastion = module.sg_bastion.sg-bastion-id
   api     = module.sg_api.sg-api-id
 }
 
 module "public_1" {
   source     = "./modules/subnets/public_1"
-  vpc-id     = module.vpc.vpc-id
+  vpc-id     = var.VPC_ID
   cidr-pub-1 = var.PUB_SUB_CIDR
 }
 
 module "public_2" {
   source     = "./modules/subnets/public_2"
-  vpc-id     = module.vpc.vpc-id
+  vpc-id     = var.VPC_ID
   cidr-pub-2 = var.PUB_SUB_2_CIDR
 }
 
 module "public_3" {
   source     = "./modules/subnets/public_3"
-  vpc-id     = module.vpc.vpc-id
+  vpc-id     = var.VPC_ID
   cidr-pub-3 = var.PUB_SUB_3_CIDR
 }
 
 module "private" {
   source     = "./modules/subnets/private"
-  vpc-id     = module.vpc.vpc-id
+  vpc-id     = var.VPC_ID
   cidr-pri-1 = var.PRI_SUB_CIDR_1
   cidr-pri-2 = var.PRI_SUB_CIDR_2
 
