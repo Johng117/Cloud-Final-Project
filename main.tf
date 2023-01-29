@@ -70,8 +70,6 @@ module "sg_api" {
   source = "./modules/security-groups/sg_api"
   vpc-id = var.VPC_ID
   my-ip  = var.MY_IP
-  app    = module.sg_app.sg-app-id
-  app-ip = var.APP-IP
 }
 
 module "sg_app" {
