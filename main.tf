@@ -20,30 +20,30 @@ provider "aws" {
 
 # module calls for bastion host, ec2-pi and ec2-app instances
 module "ec2-bastion" {
-  source    = "./modules/ec2-bastion"
+  source            = "./modules/ec2-bastion"
   bastion-user-data = file("./data/psql_install.sh")
   bastion-subnet-id = module.public_1.public-1-id
   bastion-sg-id     = module.sg_bastion.sg-bastion-id
-  image     = var.IMAGE
-  bastion-key-pair = var.BASTION_KEY_PAIR
+  image             = var.IMAGE
+  bastion-key-pair  = var.BASTION_KEY_PAIR
 }
 
 module "ec2-api" {
-  source    = "./modules/ec2-api"
-  user-data = templatefile("./data/fp_api.sh", { db = "${var.DB}", host = "${var.HOST}", password = "${var.DB_PASSWORD}", user = "${var.DB_USERNAME}" })
-  subnet-id = module.public_2.public-2-id
-  sg-id     = module.sg_api.sg-api-id
-  image     = var.IMAGE
-  api-key-pair  = var.API_KEY_PAIR
+  source       = "./modules/ec2-api"
+  user-data    = templatefile("./data/fp_api.sh", { db = "${var.DB}", host = "${var.HOST}", password = "${var.DB_PASSWORD}", user = "${var.DB_USERNAME}" })
+  subnet-id    = module.public_2.public-2-id
+  sg-id        = module.sg_api.sg-api-id
+  image        = var.IMAGE
+  api-key-pair = var.API_KEY_PAIR
 }
 
 module "ec2-app" {
-  source    = "./modules/ec2-app"
-  user-data = templatefile("./data/fp_app.sh", { api-ip = "${var.API_IP}" })
-  subnet-id = module.public_3.public-3-id
-  sg-id     = module.sg_app.sg-app-id
-  image     = var.IMAGE
-  app-key-pair  = var.APP_KEY_PAIR
+  source       = "./modules/ec2-app"
+  user-data    = templatefile("./data/fp_app.sh", { api-ip = "${var.API_IP}" })
+  subnet-id    = module.public_3.public-3-id
+  sg-id        = module.sg_app.sg-app-id
+  image        = var.IMAGE
+  app-key-pair = var.APP_KEY_PAIR
 }
 
 
