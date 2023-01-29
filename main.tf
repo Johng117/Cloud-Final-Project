@@ -33,7 +33,7 @@ module "ec2-api" {
   subnet-id = module.public_2.public-2-id
   sg-id     = module.sg_api.sg-api-id
   image     = var.IMAGE
-  key-pair  = var.API_KEY_PAIR
+  api-key-pair  = var.API_KEY_PAIR
 }
 
 module "ec2-app" {

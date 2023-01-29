@@ -13,6 +13,8 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
   TF_VAR_vpc-id: ${{ secrets.VPC_ID }}
+  TF_VAR_image: ${{ secrets.AWS_IMAGE }}
+  TF_VAR_api-key-pair: ${{ secrets.API_KEY }}
 
 permissions:
   contents: read
