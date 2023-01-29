@@ -3,7 +3,7 @@
 resource "aws_instance" "fp_app" {
     ami = var.image
     instance_type = "t2.micro"
-    key_name = var.key-pair
+    key_name = var.app-key-pair
     vpc_security_group_ids = [var.sg-id]
     subnet_id = var.subnet-id
     associate_public_ip_address = true

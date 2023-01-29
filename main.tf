@@ -25,6 +25,7 @@ module "ec2-bastion" {
   subnet-id = module.public_1.public-1-id
   sg-id     = module.sg_bastion.sg-bastion-id
   image     = var.IMAGE
+  bastion-key-pair = var.BASTION_KEY_PAIR
 }
 
 module "ec2-api" {
@@ -42,7 +43,7 @@ module "ec2-app" {
   subnet-id = module.public_3.public-3-id
   sg-id     = module.sg_app.sg-app-id
   image     = var.IMAGE
-  key-pair  = var.APP_KEY_PAIR
+  app-key-pair  = var.APP_KEY_PAIR
 }
 
 
