@@ -109,7 +109,7 @@ jobs:
           #api
           TF_VAR_api-key-pair: ${{ secrets.API_KEY }}
           TF_VAR_api-user-data: ${{ secrets.API_DATA }}
-          TF_VAR_api-subnet-id: ${{ secrets.}}
+          TF_VAR_api-subnet-id: 
           TF_VAR_api-sg-id:
           TF_VAR_db:
           TF_VAR_host:
