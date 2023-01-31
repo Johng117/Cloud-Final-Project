@@ -6,6 +6,17 @@ resource "aws_db_subnet_group" "fp_rds_subnet_group" {
   subnet_ids  = [ var.private-1, var.private-2 ]
 }
 
+# parameter group for rds database instance
+resource "aws_db_parameter_group" "rds_pg" {
+  name   = "fp-parameter-group"
+  family = "postgres14"
+
+  parameter {
+    name  = "log_connections"
+    value = "1"
+  }
+}
+
 #create rds instance inside private subnet
 resource "aws_db_instance" "fp_db" {
   identifier             = "final-project"
@@ -21,13 +32,4 @@ resource "aws_db_instance" "fp_db" {
   skip_final_snapshot    = true
 }
 
-# parameter group for rds database instance
-resource "aws_db_parameter_group" "rds_pg" {
-  name   = "fp-parameter-group"
-  family = "postgres14"
 
-  parameter {
-    name  = "log_connections"
-    value = "1"
-  }
-}
