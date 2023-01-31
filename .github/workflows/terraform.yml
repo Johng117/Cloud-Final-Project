@@ -10,31 +10,16 @@ env:
   # credentials
   AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
-
-  ACL_VALUE: ${{ secrets.ACL }}
   API_IP: ${{ secrets.API_IP_ADDRESS }}
-  API_KEY_PAIR: ${{ secrets.API_KEY }}
+  
   APP_IP: ${{ secrets.APP_IP }}
   APP_KEY_PAIR: ${{ secrets.APP_KEY }}
-  IMAGE: ${{ secrets.AWS_IMAGE }}
+  
   INSTANCE: ${{ secrets.AWS_INSTANCE }}
-  KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
-  BUCKET_NAME: ${{ secrets.BUCKET }}
   DB: ${{ secrets.DB }}
   HOST: ${{ secrets.DB_HOST }}
   DB_PASSWORD: ${{ secrets.DB_PASS }}
   DB_USERNAME: ${{ secrets.DB_USER }}
-  DYN_HASH: ${{ secrets.DYNAMO_HASH }}
-  DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
-  DYN_NAME: ${{ secrets.DYNAMO_NAME }}
-  FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
-  MY_IP: ${{ secrets.MY_IP }}
-  PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
-  PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
-  PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
-  PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
-  PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
   VPC_CIDR: ${{ secrets.VPC_CIDR }}
   PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
   PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
@@ -109,41 +94,41 @@ jobs:
           #api
           TF_VAR_api-key-pair: ${{ secrets.API_KEY }}
           TF_VAR_api-user-data: ${{ secrets.API_DATA }}
-          TF_VAR_api-subnet-id: 
-          TF_VAR_api-sg-id:
-          TF_VAR_db:
-          TF_VAR_host:
-          TF_VAR_password:
-          TF_VAR_user:
+          TF_VAR_api-subnet-id: ${{ secrets.API_SUBNET_ID }}
+          TF_VAR_api-sg-id: ${{ secrets.API_SG_ID}}
+          TF_VAR_db: ${{ secrets.DB }}
+          TF_VAR_host: ${{ secrets.DB_HOST }}
+          TF_VAR_password: ${{ secrets.DB_PASS }}
+          TF_VAR_user: ${{ secrets.DB_USER }}
           #app
           TF_VAR_app-key-pair: ${{ secrets.APP_KEY }}
-          TF_VAR_app-user-data:
-          TF_VAR_app-subnet-id:
-          TF_VAR_app-sg-id:
+          TF_VAR_app-user-data: ${{ secrets.APP_DATA }}
+          TF_VAR_app-subnet-id: ${{ secrets.APP_SUBNET_ID }}
+          TF_VAR_app-sg-id: ${{ secrets.APP_SG_ID }}
           #bastion
           TF_VAR_bastion-key-pair: ${{ secrets.BAST_KEY_PAIR }}
           TF_VAR_bastion-user-data: ${{ secrets.BASTION_DATA }}
-          TF_VAR_bastion-subnet-id:
-          TF_VAR_bastion-sg-id:
+          TF_VAR_bastion-subnet-id: ${{ secrets.BASTION_SUBNET_ID }}
+          TF_VAR_bastion-sg-id: ${{ secrets.BASTION_SG_ID }}
           #db
-          TF_VAR_private-1:
-          TF_VAR_private-2:
-          TF_VAR_rds-sg:
-          TF_VAR_rds-password:
-          TF_VAR_api:
+          TF_VAR_private-1: ${{ secrets.PRI_1_ID }}
+          TF_VAR_private-2: ${{ secrets.PRI_2_ID }}
+          TF_VAR_rds-sg: ${{ secrets.RDS_SG_ID }}
+          TF_VAR_rds-password: ${{ secrets.DB_PASS }}
+          TF_VAR_api: ${{ secrets.API_SG_ID}}
           #subnets
-          TF_VAR_cidr-pub-1:
-          TF_VAR_cidr-pub-2:
-          TF_VAR_cidr-pub-3:
-          TF_VAR_cidr-pri-1:
-          TF_VAR_cidr-pri-2:
+          TF_VAR_cidr-pub-1: ${{ secrets.PUB_SUB_1 }}
+          TF_VAR_cidr-pub-2: ${{ secrets.PUB_SUB_2 }}
+          TF_VAR_cidr-pub-3: ${{ secrets.PUB_SUB_3 }}
+          TF_VAR_cidr-pri-1: ${{ secrets.PRI_SUB_1 }}
+          TF_VAR_cidr-pri-2: ${{ secrets.PRI_SUB_2 }}
           #s3
-          TF_VAR_bucket-name:
-          TF_VAR_acl-value:
-          TF_VAR_dynamo-name:
-          TF_VAR_dynamo-hash:
-          TF_VAR_dynamo-hash-type:
-          TF_VAR_region:
+          TF_VAR_bucket-name: ${{ secrets.BUCKET }}
+          TF_VAR_acl-value: ${{ secrets.ACL }}
+          TF_VAR_dynamo-name: ${{ secrets.DYNAMO_NAME }}
+          TF_VAR_dynamo-hash: ${{ secrets.DYNAMO_HASH }}
+          TF_VAR_dynamo-hash-type: ${{ secrets.DYNAMO_HASH_TYPE }}
+          TF_VAR_region: ${{ secrets.AWS_REGION }}
 
         # On push to "master", build or change infrastructure according to Terraform configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
