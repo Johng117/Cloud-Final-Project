@@ -7,22 +7,6 @@ on:
 
 env:
   TF_LOG: TRACE
-  # credentials
-  AWS_ACTION_KEY_ID: ${{ secrets.AWS_ACTION_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  API_IP: ${{ secrets.API_IP_ADDRESS }}
-  
-  APP_IP: ${{ secrets.APP_IP }}
-  APP_KEY_PAIR: ${{ secrets.APP_KEY }}
-  
-  INSTANCE: ${{ secrets.AWS_INSTANCE }}
-  DB: ${{ secrets.DB }}
-  HOST: ${{ secrets.DB_HOST }}
-  DB_PASSWORD: ${{ secrets.DB_PASS }}
-  DB_USERNAME: ${{ secrets.DB_USER }}
-  VPC_CIDR: ${{ secrets.VPC_CIDR }}
-  PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
-  PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
 
 permissions:
   contents: read
