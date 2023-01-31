@@ -130,7 +130,6 @@ jobs:
           TF_VAR_private-2:
           TF_VAR_rds-sg:
           TF_VAR_rds-password:
-          TF_VAR_user:
           TF_VAR_api:
           #subnets
           TF_VAR_cidr-pub-1:
