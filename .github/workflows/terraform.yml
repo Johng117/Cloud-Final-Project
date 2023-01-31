@@ -15,14 +15,11 @@ jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
-    env:
-      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    # defaults:
-    #   run:
-    #     shell: bash
+    defaults:
+      run:
+        shell: bash
 
     steps:
       # Checkout the repository to the GitHub Actions runner
@@ -59,9 +56,10 @@ jobs:
       - name: Terraform Format
         run: terraform fmt -check -list
 
-      #
-      # - name: Terraform Validate
-      #   run: terraform validate
+      # Runs terraform validate
+      - name: Terraform Validate
+        run: terraform validate
+
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         run: terraform plan
