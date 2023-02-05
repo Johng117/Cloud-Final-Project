@@ -22,9 +22,6 @@ env:
   TF_VAR_INSTANCE: ${{ secrets.AWS_INSTANCE }}
   #api
   TF_VAR_API_KEY_PAIR: ${{ secrets.API_KEY }}
-  # TF_VAR_api-user-data: ${{ secrets.API_DATA }}
-  # TF_VAR_api-subnet-id: ${{ secrets.API_SUBNET_ID }}
-  # TF_VAR_api-sg-id: ${{ secrets.API_SG_ID}}
   TF_VAR_API_IP: ${{ secrets.API_IP_ADDRESS }}
   TF_VAR_DB: ${{ secrets.DB }}
   TF_VAR_HOST: ${{ secrets.DB_HOST }}
@@ -32,12 +29,10 @@ env:
   TF_VAR_DB_USERNAME: ${{ secrets.DB_USER }}
   #app
   TF_VAR_APP_KEY_PAIR: ${{ secrets.APP_KEY }}
-  # TF_VAR_app-user-data: ${{ secrets.APP_DATA }}
   TF_VAR_app-subnet-id: ${{ secrets.APP_SUBNET_ID }}
   TF_VAR_app-sg-id: ${{ secrets.APP_SG_ID }}
   #bastion
   TF_VAR_BASTION_KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
-  # TF_VAR_bastion-user-data: ${{ secrets.BASTION_DATA }}
   TF_VAR_bastion-subnet-id: ${{ secrets.BASTION_SUBNET_ID }}
   TF_VAR_bastion-sg-id: ${{ secrets.BASTION_SG_ID }}
   #db
