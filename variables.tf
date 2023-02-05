@@ -24,7 +24,7 @@ variable "VPC_ID" {}
 variable "INSTANCE" {}
 
 # key pair variable for bastion
-variable "KEY_PAIR" {}
+# variable "KEY_PAIR" {}
 
 # key pair variable for api
 variable "API_KEY_PAIR" {}
@@ -42,11 +42,11 @@ variable "MY_IP" {
 }
 
 # variable for app ip address
-variable "APP-IP" {
-  description = "react app ip address"
-  type        = string
+# variable "APP-IP" {
+#   description = "react app ip address"
+#   type        = string
 
-}
+# }
 
 # variable setting the vpc cidr blocks
 variable "VPC_CIDR" {
@@ -138,12 +138,12 @@ variable "DYN_HASH_TYPE" {
   type        = string
 }
 
-variable "PRI_SUB_1_ID" {
-  description = "private subnet 1 id"
-  type        = string
-}
+# variable "PRI_SUB_1_ID" {
+#   description = "private subnet 1 id"
+#   type        = string
+# }
 
-variable "PRI_SUB_2_ID" {
-  description = "private subnet 2 id"
-  type        = string
-}
+# variable "PRI_SUB_2_ID" {
+#   description = "private subnet 2 id"
+#   type        = string
+# }
