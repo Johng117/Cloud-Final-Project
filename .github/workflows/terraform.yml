@@ -7,6 +7,58 @@ on:
 
 env:
   TF_LOG: TRACE
+  #credentials
+  TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #vpc
+  TF_VAR_VPC_ID: ${{ secrets.VPC_ID }}
+  TF_VAR_MY_IP: ${{ secrets.MY_IP }}
+  TF_VAR_PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
+  TF_VAR_PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
+  TF_VAR_VPC_CIDR: ${{ secrets.VPC_CIDR }}
+  TF_VAR_FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
+  #image
+  TF_VAR_IMAGE: ${{ secrets.AWS_IMAGE }}
+  TF_VAR_INSTANCE: ${{ secrets.AWS_INSTANCE }}
+  #api
+  TF_VAR_API_KEY_PAIR: ${{ secrets.API_KEY }}
+  # TF_VAR_api-user-data: ${{ secrets.API_DATA }}
+  # TF_VAR_api-subnet-id: ${{ secrets.API_SUBNET_ID }}
+  # TF_VAR_api-sg-id: ${{ secrets.API_SG_ID}}
+  TF_VAR_API_IP: ${{ secrets.API_IP_ADDRESS }}
+  TF_VAR_DB: ${{ secrets.DB }}
+  TF_VAR_HOST: ${{ secrets.DB_HOST }}
+  TF_VAR_DB_PASSWORD: ${{ secrets.DB_PASS }}
+  TF_VAR_DB_USERNAME: ${{ secrets.DB_USER }}
+  #app
+  TF_VAR_APP_KEY_PAIR: ${{ secrets.APP_KEY }}
+  # TF_VAR_app-user-data: ${{ secrets.APP_DATA }}
+  TF_VAR_app-subnet-id: ${{ secrets.APP_SUBNET_ID }}
+  TF_VAR_app-sg-id: ${{ secrets.APP_SG_ID }}
+  #bastion
+  TF_VAR_BASTION_KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
+  # TF_VAR_bastion-user-data: ${{ secrets.BASTION_DATA }}
+  TF_VAR_bastion-subnet-id: ${{ secrets.BASTION_SUBNET_ID }}
+  TF_VAR_bastion-sg-id: ${{ secrets.BASTION_SG_ID }}
+  #db
+  TF_VAR_private-1: ${{ secrets.PRI_1_ID }}
+  TF_VAR_private-2: ${{ secrets.PRI_2_ID }}
+  TF_VAR_rds-sg: ${{ secrets.RDS_SG_ID }}
+  TF_VAR_rds-password: ${{ secrets.DB_PASS }}
+  TF_VAR_api: ${{ secrets.API_SG_ID}}
+  #subnets
+  TF_VAR_PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
+  TF_VAR_PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
+  TF_VAR_PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
+  TF_VAR_PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
+  TF_VAR_PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
+  #s3
+  TF_VAR_BUCKET_NAME: ${{ secrets.BUCKET }}
+  TF_VAR_ACL_VALUE: ${{ secrets.ACL }}
+  TF_VAR_DYN_NAME: ${{ secrets.DYNAMO_NAME }}
+  TF_VAR_DYN_HASH: ${{ secrets.DYNAMO_HASH }}
+  TF_VAR_DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
+  TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
 
 permissions:
   contents: read
@@ -59,62 +111,7 @@ jobs:
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         run: terraform plan -input=false -lock=false
-        env:
-          #credentials
-          TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          #vpc
-          TF_VAR_VPC_ID: ${{ secrets.VPC_ID }}
-          TF_VAR_MY_IP: ${{ secrets.MY_IP }}
-          TF_VAR_PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
-          TF_VAR_PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
-          TF_VAR_VPC_CIDR: ${{ secrets.VPC_CIDR }}
-          TF_VAR_FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
-          #image
-          TF_VAR_IMAGE: ${{ secrets.AWS_IMAGE }}
-          TF_VAR_INSTANCE: ${{ secrets.AWS_INSTANCE }}
-          #api
-          TF_VAR_API_KEY_PAIR: ${{ secrets.API_KEY }}
-          # TF_VAR_api-user-data: ${{ secrets.API_DATA }}
-          # TF_VAR_api-subnet-id: ${{ secrets.API_SUBNET_ID }}
-          # TF_VAR_api-sg-id: ${{ secrets.API_SG_ID}}
-          TF_VAR_API_IP: ${{ secrets.API_IP_ADDRESS }}
-          TF_VAR_DB: ${{ secrets.DB }}
-          TF_VAR_HOST: ${{ secrets.DB_HOST }}
-          TF_VAR_DB_PASSWORD: ${{ secrets.DB_PASS }}
-          TF_VAR_DB_USERNAME: ${{ secrets.DB_USER }}
-          #app
-          TF_VAR_APP_KEY_PAIR: ${{ secrets.APP_KEY }}
-          # TF_VAR_app-user-data: ${{ secrets.APP_DATA }}
-          TF_VAR_app-subnet-id: ${{ secrets.APP_SUBNET_ID }}
-          TF_VAR_app-sg-id: ${{ secrets.APP_SG_ID }}
-          #bastion
-          TF_VAR_BASTION_KEY_PAIR: ${{ secrets.BAST_KEY_PAIR }}
-          # TF_VAR_bastion-user-data: ${{ secrets.BASTION_DATA }}
-          TF_VAR_bastion-subnet-id: ${{ secrets.BASTION_SUBNET_ID }}
-          TF_VAR_bastion-sg-id: ${{ secrets.BASTION_SG_ID }}
-          #db
-          TF_VAR_private-1: ${{ secrets.PRI_1_ID }}
-          TF_VAR_private-2: ${{ secrets.PRI_2_ID }}
-          TF_VAR_rds-sg: ${{ secrets.RDS_SG_ID }}
-          TF_VAR_rds-password: ${{ secrets.DB_PASS }}
-          TF_VAR_api: ${{ secrets.API_SG_ID}}
-          #subnets
-          TF_VAR_PUB_SUB_CIDR: ${{ secrets.PUB_SUB_1 }}
-          TF_VAR_PUB_SUB_2_CIDR: ${{ secrets.PUB_SUB_2 }}
-          TF_VAR_PUB_SUB_3_CIDR: ${{ secrets.PUB_SUB_3 }}
-          TF_VAR_PRI_SUB_CIDR_1: ${{ secrets.PRI_SUB_1 }}
-          TF_VAR_PRI_SUB_CIDR_2: ${{ secrets.PRI_SUB_2 }}
-          #s3
-          TF_VAR_BUCKET_NAME: ${{ secrets.BUCKET }}
-          TF_VAR_ACL_VALUE: ${{ secrets.ACL }}
-          TF_VAR_DYN_NAME: ${{ secrets.DYNAMO_NAME }}
-          TF_VAR_DYN_HASH: ${{ secrets.DYNAMO_HASH }}
-          TF_VAR_DYN_HASH_TYPE: ${{ secrets.DYNAMO_HASH_TYPE }}
-          TF_VAR_AWS_REGION: ${{ secrets.AWS_REGION }}
-
-        # On push to "master", build or change infrastructure according to Terraform configuration files
-        # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+        
       - name: Terraform Apply
-        # if: github.ref == 'refs/heads/"master"' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/"master"' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false -lock=false
