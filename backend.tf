@@ -4,7 +4,7 @@ terraform {
     bucket         = "fp-bucket-13244321"
     key            = "s3/terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "fp-lock"
+    dynamodb_table = "fp-locks"
     encrypt        = true
   }
 }
