@@ -66,8 +66,8 @@ jobs:
           #vpc
           TF_VAR_VPC_ID: ${{ secrets.VPC_ID }}
           TF_VAR_MY_IP: ${{ secrets.MY_IP }}
-          # TF_VAR_private-subnet-1-id: ${{ secrets.PRI_1_ID }}
-          # TF_VAR_private-subnet-2-id: ${{ secrets.PRI_2_ID }}
+          TF_VAR_PRI_SUB_1_ID: ${{ secrets.PRI_1_ID }}
+          TF_VAR_PRI_SUB_2_ID: ${{ secrets.PRI_2_ID }}
           TF_VAR_VPC_CIDR: ${{ secrets.VPC_CIDR }}
           TF_VAR_FP_IG_ROUTE_CIDR: ${{ secrets.FP_IG_ROUTE }}
           #image
