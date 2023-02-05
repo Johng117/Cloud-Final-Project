@@ -38,14 +38,14 @@ variable "BASTION_KEY_PAIR" {}
 variable "MY_IP" {
   description = "my ip address"
   type        = string
-  
+
 }
 
 # variable for app ip address
 variable "APP-IP" {
   description = "react app ip address"
   type        = string
-  
+
 }
 
 # variable setting the vpc cidr blocks
