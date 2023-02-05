@@ -138,12 +138,12 @@ variable "DYN_HASH_TYPE" {
   type        = string
 }
 
-# variable "PRI_SUB_1_ID" {
-#   description = "private subnet 1 id"
-#   type        = string
-# }
+variable "PRI_SUB_1_ID" {
+  description = "private subnet 1 id"
+  type        = string
+}
 
-# variable "PRI_SUB_2_ID" {
-#   description = "private subnet 2 id"
-#   type        = string
-# }
+variable "PRI_SUB_2_ID" {
+  description = "private subnet 2 id"
+  type        = string
+}
